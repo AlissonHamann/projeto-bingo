@@ -52,10 +52,9 @@ function criartodasCartelas(quantidadeCartelas) {
 //Chamaando função para criar TodasCartelas
 let todasCartelas = criartodasCartelas(quantidadeCartelas)
 
-
 //Parte 2: vericar numero cantado
-gabarito = [[], [], [], [], [], [], []]
-jaAlert = [[], [], [], [], [], [], []]
+let gabarito = [[], [], [], [], [], [], []]
+let jaAlert = [[], [], [], [], [], [], []]
 while (true) {
     numeroCantado = Number(prompt("Digite o numero cantado ou 0 para parar"))
 
@@ -72,11 +71,13 @@ while (true) {
                 gabarito[incre].push(numeroCantado)
                 window.alert(`A cartela ${incre + 1} tem o numero: ${numeroCantado}`)
             }
-
+            
             //Alertano cartela completa
+            
             if (jaAlert[incre] && gabarito[incre].length === quantidadeNumeros) {
-                window.alert(`A cartela ${incre + 1} está completa`)
-                jaAlert[incre] = true
+                window.alert(`A cartela ${incre + 1} está completaaaaa`)
+                jaAlert[incre] = 1
+                
 
             }
 
