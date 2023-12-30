@@ -50,7 +50,8 @@ function criartodasCartelas(quantidadeCartelas) {
 }
 
 //Chamaando função para criar TodasCartelas
-criartodasCartelas(quantidadeCartelas)
+let todasCartelas = criartodasCartelas(quantidadeCartelas)
+
 
 //Parte 2: vericar numero cantado
 gabarito = [[], [], [], [], [], [], []]
