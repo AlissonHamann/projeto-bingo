@@ -1,4 +1,4 @@
-let quantidadeCartelas = Number(window.prompt("Quantas cartelas tem?"))
+/* let quantidadeCartelas = Number(window.prompt("Quantas cartelas tem?"))
 
 //Validação dos numeros
 while (true) {
@@ -89,10 +89,101 @@ while (true) {
 
 
 
+ */
+let quantidadeCartelas
+let todasCartelas = [[], [], [], [], [], [], [], []]
+let gabarito = [[], [], [], [], [], [], [], []]
+let jaAlert = [, , , , , ,]
+function obeterQuantidadeCartelas() {
+    while (true) {
+        quantidadeCartelas = document.getElementById("quantidadeCartelas").value
+        if (isNaN(quantidadeCartelas) || quantidadeCartelas < 1 || quantidadeCartelas === "" || quantidadeCartelas > 8) {
+            window.alert("Erro: Insira um numero de 1 a 8")
+            document.getElementById("quantidadeCartelas").focus()
+
+            return
+        }
+
+        else {
+            document.getElementById("divNumerosCartelas").innerHTML = ""
+            for (let i = 0; i < quantidadeCartelas; i++) {
+
+                document.getElementById("divNumerosCartelas").innerHTML += `<p >Insira os numeros da cartela ${i + 1}: <input id="numerosCartelas${i}"type="text"> <p>`
+
+            }
+            document.getElementById("divNumerosCartelas").innerHTML += `<input type="button" id="botaoIniciar" value="Iniciar Bingo">`
+            document.getElementById("botaoIniciar").addEventListener("click", criartodasCartelas)
+
+
+
+            return quantidadeCartelas
+
+
+        }
+    }
 
 
 
 
+}
+
+let botaoCampos = document.getElementById("botaoCampos")
+document.getElementById("botaoCampos").addEventListener("click", obeterQuantidadeCartelas)
+
+
+function criartodasCartelas() {
+    
+    
+    for (let i = 0; i < quantidadeCartelas; i++) {
+
+        todasCartelas[i].push(document.getElementById(`numerosCartelas${i}`).value)
+        console.log(todasCartelas)
+
+    }
+
+    document.getElementById("divNumerosCantados").innerHTML = ""
+    document.getElementById("divNumerosCantados").innerHTML = `<p>Insira o numero cantado: <input type="text" id="numeroCantado"> <input type="button" value="Verificar" id="botaoVerificar"></p>`
+    for (let i = 0; i < quantidadeCartelas; i++) {
+        document.getElementById("divNumerosCantados").innerHTML += `<p>A cartela ${i + 1} tem os numeros: <p id="cartelaGabarito${i}"> </p></p>`
+    }
+    let botaoVerificar = document.getElementById("botaoVerificar")
+    botaoVerificar.addEventListener("click", verificarCantado)
+
+
+}
+
+
+
+
+
+function verificarCantado() {
+    
+    numeroCantado = Number(document.getElementById("numeroCantado").value)
+
+    for (let incre = 0; incre < todasCartelas.length; incre++) {
+        todasCartelas[incre].forEach((numero) => {
+            console.log(todasCartelas[incre])
+            console.log(numero)
+            //Verificando e adiconando numero candatdo
+            if (numeroCantado === numero) {
+                gabarito[incre].push(numeroCantado)
+                window.alert(`A cartela ${incre + 1} tem o numero: ${numeroCantado}`)
+            }
+
+            //Alertano cartela completa
+
+            if (isNaN(jaAlert[incre]) && gabarito[incre].length === document.getElementById(`numerosCartelas${incre}`).value) {
+                window.alert(`A cartela ${incre + 1} está completa`)
+                jaAlert[incre] = 1
+
+
+            }
+
+
+        })
+    }
+
+}
 
 
 
