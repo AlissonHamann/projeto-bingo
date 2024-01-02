@@ -53,7 +53,7 @@ function criartodasCartelas() {
                 .filter(num => num !== '')  // Remove elementos vazios
                 .map(Number)
         )
-        
+
     }
 
     todasCartelas.forEach(function (cartela) {
@@ -62,11 +62,11 @@ function criartodasCartelas() {
             jaAlert2 = 0
             document.getElementById("divNumerosCantados").innerHTML = ""
 
-            
-            
+
+
 
         }
-        
+
 
         if (2 <= cartela.length) {
             document.getElementById("divNumerosCantados").innerHTML = ""
@@ -79,9 +79,9 @@ function criartodasCartelas() {
             let botaoVerificar = document.getElementById("botaoVerificar")
             botaoVerificar.addEventListener("click", verificarCantado)
         }
-        
-        
-        
+
+
+
     })
 }
 
@@ -93,25 +93,29 @@ function criartodasCartelas() {
 
 function verificarCantado() {
 
-
+    let jaAlert3 = 1
 
     numeroCantado = Number(document.getElementById("numeroCantado").value)
-
+    
     for (let incre = 0; incre < todasCartelas.length; incre++) {
+        
         todasCartelas[incre].forEach((numero) => {
-
-            console.log(numero)
             //Verificando e adiconando numero candatdo
+            
+            
             if (numeroCantado === numero) {
                 gabarito[incre].push(numeroCantado)
                 document.getElementById(`cartelaGabarito${incre}`).innerText += `${numeroCantado}\u00A0`
+                jaAlert3 = 0
 
             }
+
             
 
 
             //Alertano cartela completa
-           
+
+
             if (isNaN(jaAlert[incre]) && gabarito[incre].length === todasCartelas[incre].length) {
                 window.alert(`A cartela ${incre + 1} está completa`)
                 jaAlert[incre] = 1
@@ -119,14 +123,21 @@ function verificarCantado() {
 
             }
 
-            
+
             document.getElementById("numeroCantado").value = ""
             document.getElementById("numeroCantado").focus()
 
 
 
         })
+        
     }
+    
+
+    if (jaAlert3) {
+        window.alert(`Nenhuma cartela tem o numero ${numeroCantado}`)
+    }
+
 
 }
 
