@@ -2,9 +2,12 @@ let quantidadeCartelas
 let todasCartelas = []
 let gabarito = [[], [], [], [], [], [], [], []]
 let jaAlert = [, , , , , ,]
+
 function obeterQuantidadeCartelas() {
     while (true) {
         quantidadeCartelas = document.getElementById("quantidadeCartelas").value
+
+        // validação do input de numero de cartelas
         if (isNaN(quantidadeCartelas) || quantidadeCartelas < 1 || quantidadeCartelas === "" || quantidadeCartelas > 8) {
             window.alert("Erro: Insira um numero de 1 a 8")
             document.getElementById("quantidadeCartelas").focus()
@@ -12,6 +15,7 @@ function obeterQuantidadeCartelas() {
             return
         }
 
+        // caso input válido, crie divs para o número de cartelas e botão para proxima função
         else {
             document.getElementById("divNumerosCartelas").innerHTML = ""
             document.getElementById("divNumerosCartelas").innerHTML += `<h4>Insira os numeros espaçados ex.: 45 78 01</h4>`
@@ -37,10 +41,6 @@ function obeterQuantidadeCartelas() {
 
 
 }
-
-let botaoCampos = document.getElementById("botaoCampos")
-document.getElementById("botaoCampos").addEventListener("click", obeterQuantidadeCartelas)
-
 
 function criartodasCartelas() {
 
@@ -86,11 +86,6 @@ function criartodasCartelas() {
 }
 
 
-
-
-
-
-
 function verificarCantado() {
 
     let jaAlert3 = 1
@@ -103,7 +98,7 @@ function verificarCantado() {
             //Verificando e adiconando numero candatdo
             
             
-            if (numeroCantado === numero) {
+            if (numeroCantado === numero && isNaN(jaAlert[incre])) {
                 gabarito[incre].push(numeroCantado)
                 document.getElementById(`cartelaGabarito${incre}`).innerText += `${numeroCantado}\u00A0`
                 jaAlert3 = 0
@@ -119,6 +114,7 @@ function verificarCantado() {
             if (isNaN(jaAlert[incre]) && gabarito[incre].length === todasCartelas[incre].length) {
                 window.alert(`A cartela ${incre + 1} está completa`)
                 jaAlert[incre] = 1
+
 
 
             }
@@ -141,6 +137,9 @@ function verificarCantado() {
 
 }
 
+
+let botaoCampos = document.getElementById("botaoCampos")
+document.getElementById("botaoCampos").addEventListener("click", obeterQuantidadeCartelas)
 
 
 
