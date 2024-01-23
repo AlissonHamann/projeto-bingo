@@ -77,7 +77,7 @@ function criartodasCartelas() {
 
         if (2 <= cartela.length) {
             document.getElementById("divNumerosCantados").innerHTML = ""
-            document.getElementById("divNumerosCantados").innerHTML = `<p>Insira o numero cantado: <input type="number" id="numeroCantado"> <input type="button" value="Verificar" id="botaoVerificar"></p>`
+            document.getElementById("divNumerosCantados").innerHTML = `<p id="pNumerosCantados">Insira o numero cantado: <input type="number" id="numeroCantado"> <input type="button" value="Verificar" id="botaoVerificar"></p>`
             for (let i = 0; i < quantidadeCartelas; i++) {
                 document.getElementById("divNumerosCantados").innerHTML += `<p>A cartela ${i + 1} tem os numeros: <span id="cartelaGabarito${i}"> </span></p>`
             }
