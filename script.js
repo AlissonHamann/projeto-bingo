@@ -4,14 +4,20 @@ let gabarito = [[], [], [], [], [], [], [], []]
 let jaAlert = [, , , , , ,]
 
 function obeterQuantidadeCartelas() {
+
+
+
     while (true) {
+        
+        document.getElementById("botaoCampos").removeEventListener("click", obeterQuantidadeCartelas)
+        
         quantidadeCartelas = document.getElementById("quantidadeCartelas").value
 
         // validação do input de numero de cartelas
         if (isNaN(quantidadeCartelas) || quantidadeCartelas < 1 || quantidadeCartelas === "" || quantidadeCartelas > 8) {
             window.alert("Erro: Insira um numero de 1 a 8")
             document.getElementById("quantidadeCartelas").focus()
-
+            document.getElementById("botaoCampos").addEventListener("click", obeterQuantidadeCartelas)
             return
         }
 
@@ -44,6 +50,7 @@ function obeterQuantidadeCartelas() {
 
 function criartodasCartelas() {
 
+    document.getElementById("botaoIniciar").removeEventListener("click", criartodasCartelas)
     todasCartelas = []
     let jaAlert2 = 1
     for (let i = 0; i < quantidadeCartelas; i++) {
@@ -58,6 +65,7 @@ function criartodasCartelas() {
 
     todasCartelas.forEach(function (cartela) {
         if (1 >= cartela.length && jaAlert2) {
+            document.getElementById("botaoIniciar").addEventListener("click", criartodasCartelas)
             window.alert("Erro:Prencha todos os campos com 2 numeros ou mais")
             jaAlert2 = 0
             document.getElementById("divNumerosCantados").innerHTML = ""
@@ -89,19 +97,30 @@ function criartodasCartelas() {
 function verificarCantado() {
 
     let jaAlert3 = 1
+    if (document.getElementById("numeroCantado").value === "") {
+        window.alert("Erro: Insira o numero cantado")
 
+        return
+    }
     numeroCantado = Number(document.getElementById("numeroCantado").value)
     
     for (let incre = 0; incre < todasCartelas.length; incre++) {
-        
+       if (gabarito[incre].includes(numeroCantado)) {
+            window.alert(`O numero ${numeroCantado} já joi verificado`)
+            document.getElementById("numeroCantado").focus()
+            return
+       }
+
         todasCartelas[incre].forEach((numero) => {
             //Verificando e adiconando numero candatdo
             
             
+
             if (numeroCantado === numero && isNaN(jaAlert[incre])) {
                 gabarito[incre].push(numeroCantado)
                 document.getElementById(`cartelaGabarito${incre}`).innerText += `${numeroCantado}\u00A0`
                 jaAlert3 = 0
+
 
             }
 
@@ -113,6 +132,7 @@ function verificarCantado() {
 
             if (isNaN(jaAlert[incre]) && gabarito[incre].length === todasCartelas[incre].length) {
                 window.alert(`A cartela ${incre + 1} está completa`)
+                document.getElementById(`cartelaGabarito${incre}`).innerText += `(Cartela completa)`
                 jaAlert[incre] = 1
 
 
