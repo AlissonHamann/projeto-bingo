@@ -10,7 +10,6 @@ function obeterQuantidadeCartelas() {
     while (true) {
         
         document.getElementById("botaoCampos").removeEventListener("click", obeterQuantidadeCartelas)
-        
         quantidadeCartelas = document.getElementById("quantidadeCartelas").value
 
         // validação do input de numero de cartelas
@@ -131,7 +130,10 @@ function verificarCantado() {
 
 
             if (isNaN(jaAlert[incre]) && gabarito[incre].length === todasCartelas[incre].length) {
-                window.alert(`A cartela ${incre + 1} está completa`)
+                setTimeout(function(){
+                    window.alert(`A cartela ${incre + 1} está completa`)
+                }, 1)
+               
                 document.getElementById(`cartelaGabarito${incre}`).innerText += `(Cartela completa)`
                 jaAlert[incre] = 1
 
