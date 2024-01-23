@@ -7,9 +7,13 @@
 #divNumerosCantados {
    padding: 10px ;
    width: 350px;
-    
+   word-wrap: break-word
 }
 
 #pNumerosCantados {
     width: 320px;
+}
+
+#spanCompleta {
+    white-space: nowrap
 }
