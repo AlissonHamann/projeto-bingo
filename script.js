@@ -98,7 +98,7 @@ function verificarCantado() {
     let jaAlert3 = 1
     if (document.getElementById("numeroCantado").value === "") {
         window.alert("Erro: Insira o numero cantado")
-
+        document.getElementById("numeroCantado").focus()
         return
     }
     numeroCantado = Number(document.getElementById("numeroCantado").value)
@@ -134,7 +134,7 @@ function verificarCantado() {
                     window.alert(`A cartela ${incre + 1} está completa`)
                 }, 1)
                
-                document.getElementById(`cartelaGabarito${incre}`).innerText += `(Cartela completa)`
+                document.getElementById(`cartelaGabarito${incre}`).innerHTML += `<span id="spanCompleta">(Cartela completa)</span>`
                 jaAlert[incre] = 1
 
 
