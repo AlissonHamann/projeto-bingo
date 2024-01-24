@@ -106,6 +106,7 @@ function verificarCantado() {
     for (let incre = 0; incre < todasCartelas.length; incre++) {
        if (gabarito[incre].includes(numeroCantado)) {
             window.alert(`O numero ${numeroCantado} já joi verificado`)
+            document.getElementById("numeroCantado").value = ""
             document.getElementById("numeroCantado").focus()
             return
        }
