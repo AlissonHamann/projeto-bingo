@@ -52,18 +52,31 @@ function criartodasCartelas() {
     document.getElementById("botaoIniciar").removeEventListener("click", criartodasCartelas)
     todasCartelas = []
     let jaAlert2 = 1
+    let jaAlert4 = 1
     for (let i = 0; i < quantidadeCartelas; i++) {
-        var minhaString = document.getElementById(`numerosCartelas${i}`).value;
+        let valorCartelas = document.getElementById(`numerosCartelas${i}`).value; 
         todasCartelas.push(
-            minhaString.split(' ')
+            valorCartelas.split(' ')
                 .filter(num => num !== '')  // Remove elementos vazios
                 .map(Number)
         )
 
+        
     }
 
+
+
     todasCartelas.forEach(function (cartela) {
-        if (1 >= cartela.length && jaAlert2) {
+        cartela.forEach(function(cadaNumero){
+            if (isNaN(cadaNumero) && jaAlert4 && jaAlert2) {
+                document.getElementById("botaoIniciar").addEventListener("click", criartodasCartelas)
+                window.alert("Erro:Prencha os campos apenas com numeros")
+                jaAlert4 = 0
+                document.getElementById("divNumerosCantados").innerHTML = ""
+            }
+        })
+
+        if (1 >= cartela.length && jaAlert2 && jaAlert4) {
             document.getElementById("botaoIniciar").addEventListener("click", criartodasCartelas)
             window.alert("Erro:Prencha todos os campos com 2 numeros ou mais")
             jaAlert2 = 0
@@ -75,7 +88,7 @@ function criartodasCartelas() {
         }
 
 
-        if (2 <= cartela.length) {
+        if (2 <= cartela.length && jaAlert4) {
             document.getElementById("divNumerosCantados").innerHTML = ""
             document.getElementById("divNumerosCantados").innerHTML = `<p id="pNumerosCantados">Insira o numero cantado: <input type="number" id="numeroCantado"> <input type="button" value="Verificar" id="botaoVerificar"></p>`
             for (let i = 0; i < quantidadeCartelas; i++) {
