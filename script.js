@@ -11,9 +11,9 @@ function obeterQuantidadeCartelas() {
         
         document.getElementById("botaoCampos").removeEventListener("click", obeterQuantidadeCartelas)
         quantidadeCartelas = document.getElementById("quantidadeCartelas").value
-
+        
         // validação do input de numero de cartelas
-        if (isNaN(quantidadeCartelas) || quantidadeCartelas < 1 || quantidadeCartelas === "" || quantidadeCartelas > 8) {
+        if (quantidadeCartelas < 1 || quantidadeCartelas > 8 || !Number.isInteger(Number(quantidadeCartelas))) {
             window.alert("Erro: Insira um numero de 1 a 8")
             document.getElementById("quantidadeCartelas").focus()
             document.getElementById("botaoCampos").addEventListener("click", obeterQuantidadeCartelas)
@@ -67,10 +67,11 @@ function criartodasCartelas() {
 
 
     todasCartelas.forEach(function (cartela) {
+
         cartela.forEach(function(cadaNumero){
-            if (isNaN(cadaNumero) && jaAlert4 && jaAlert2) {
+            if (isNaN(cadaNumero) && jaAlert4 && jaAlert2 || !Number.isInteger(Number(quantidadeCartelas)) ) {
                 document.getElementById("botaoIniciar").addEventListener("click", criartodasCartelas)
-                window.alert("Erro:Prencha os campos apenas com numeros")
+                window.alert("Erro:Prencha os campos apenas com numeros interios")
                 jaAlert4 = 0
                 document.getElementById("divNumerosCantados").innerHTML = ""
             }
@@ -88,7 +89,7 @@ function criartodasCartelas() {
         }
 
 
-        if (2 <= cartela.length && jaAlert4) {
+        if (2 <= cartela.length && jaAlert4 && jaAlert2) {
             document.getElementById("divNumerosCantados").innerHTML = ""
             document.getElementById("divNumerosCantados").innerHTML = `<p id="pNumerosCantados">Insira o numero cantado: <input type="number" id="numeroCantado"> <input type="button" value="Verificar" id="botaoVerificar"></p>`
             for (let i = 0; i < quantidadeCartelas; i++) {
