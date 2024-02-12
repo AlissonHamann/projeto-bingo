@@ -3,20 +3,20 @@ let todasCartelas = []
 let gabarito = [[], [], [], [], [], [], [], []]
 let jaAlert = [, , , , , ,]
 
-function obeterQuantidadeCartelas() {
+function obterQuantidadeCartelas() {
 
 
 
     while (true) {
         
-        document.getElementById("botaoCampos").removeEventListener("click", obeterQuantidadeCartelas)
+        document.getElementById("botaoCampos").removeEventListener("click", obterQuantidadeCartelas)
         quantidadeCartelas = document.getElementById("quantidadeCartelas").value
         
         // validação do input de numero de cartelas
         if (quantidadeCartelas < 1 || quantidadeCartelas > 8 || !Number.isInteger(Number(quantidadeCartelas))) {
             window.alert("Erro: Insira um numero de 1 a 8")
             document.getElementById("quantidadeCartelas").focus()
-            document.getElementById("botaoCampos").addEventListener("click", obeterQuantidadeCartelas)
+            document.getElementById("botaoCampos").addEventListener("click", obterQuantidadeCartelas)
             return
         }
 
@@ -58,10 +58,9 @@ function criartodasCartelas() {
         todasCartelas.push(
             valorCartelas.split(' ')
                 .filter(num => num !== '')  // Remove elementos vazios
-                .map(Number)
-        )
-
-        
+                
+        );
+        console.log(valorCartelas)
     }
 
 
@@ -115,8 +114,10 @@ function verificarCantado() {
         document.getElementById("numeroCantado").focus()
         return
     }
-    numeroCantado = Number(document.getElementById("numeroCantado").value)
+
+    numeroCantado = (document.getElementById("numeroCantado").value)
     
+
     for (let incre = 0; incre < todasCartelas.length; incre++) {
        if (gabarito[incre].includes(numeroCantado)) {
             window.alert(`O numero ${numeroCantado} já joi verificado`)
@@ -176,7 +177,7 @@ function verificarCantado() {
 
 
 let botaoCampos = document.getElementById("botaoCampos")
-document.getElementById("botaoCampos").addEventListener("click", obeterQuantidadeCartelas)
+document.getElementById("botaoCampos").addEventListener("click", obterQuantidadeCartelas)
 
 
 
